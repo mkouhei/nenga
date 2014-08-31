@@ -2,7 +2,7 @@
  Nenga
 =======
 
-feathers
+features
 --------
 
 * Generate PDF of new year card address side
