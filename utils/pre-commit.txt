@@ -1,0 +1,10 @@
+#!/bin/sh
+
+cd $(git rev-parse --show-toplevel)
+find nenga -name '*.pyc' -delete
+python setup.py test || exit 1
+python setup.py check -r || exit 1
+
+pychecker -X -s nenga/*.py
+pychecker -X -s nenga_tests/*.py
+pylint nenga
