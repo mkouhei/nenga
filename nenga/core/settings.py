@@ -50,7 +50,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'nenga.core.urls'
 
-WSGI_APPLICATION = 'nenga.core.wsgi.application'
+WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database
