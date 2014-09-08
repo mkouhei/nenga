@@ -1,4 +1,5 @@
 """ admin of Nenga as Django App """
 from django.contrib import admin
+from nenga.address.models import Contact
 
-# Register your models here.
+admin.site.register(Contact)
