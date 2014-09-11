@@ -68,9 +68,11 @@ class Contact(BaseObject):
     postal_code = models.DecimalField(max_digits=7, decimal_places=0)
     prefecture = models.CharField(max_length=2, choices=PREFECTURE_CHOICES)
     city = models.CharField(max_length=256, unique=True)
-    address = models.CharField(max_length=256, unique=False)
-    address2 = models.CharField(max_length=256, unique=False)
-    patner_name = models.CharField(max_length=255, unique=False, null=True)
+    address = models.CharField(max_length=255, unique=False)
+    address2 = models.CharField(max_length=255, unique=False,
+                                blank=True, default="")
+    patner_name = models.CharField(max_length=255, unique=False,
+                                   blank=True, default="")
 
     class Meta(object):
         """ meta class of Contact """
@@ -85,8 +87,8 @@ class PlanActual(BaseObject):
     """ plan and actual """
     destination = models.ForeignKey(Contact)
     year = models.DecimalField(max_digits=4, decimal_places=0)
-    plan = models.BooleanField()
-    actual = models.BooleanField()
+    plan = models.BooleanField(default=True)
+    actual = models.BooleanField(default=True)
 
     class Meta(object):
         """ meta class of PlanActual """
