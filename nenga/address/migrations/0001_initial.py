@@ -14,10 +14,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Contact',
             fields=[
-                ('id', shortuuidfield.fields.ShortUUIDField(primary_key=True,
-                                                            serialize=False,
-                 editable=False, max_length=22, blank=True,
-                 verbose_name=b'UUID')),
+                ('id',
+                 shortuuidfield.fields.ShortUUIDField(primary_key=True,
+                                                      serialize=False,
+                                                      editable=False,
+                                                      max_length=22,
+                                                      blank=True,
+                                                      verbose_name=b'UUID')),
                 ('last_name', models.CharField(max_length=255)),
                 ('first_name', models.CharField(max_length=255)),
                 ('postal_code', models.DecimalField(
@@ -88,10 +91,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PlanActual',
             fields=[
-                ('id', shortuuidfield.fields.ShortUUIDField(primary_key=True,
-                                                            serialize=False,
-                 editable=False, max_length=22, blank=True,
-                 verbose_name=b'UUID')),
+                ('id',
+                 shortuuidfield.fields.ShortUUIDField(primary_key=True,
+                                                      serialize=False,
+                                                      editable=False,
+                                                      max_length=22,
+                                                      blank=True,
+                                                      verbose_name=b'UUID')),
                 ('year', models.DecimalField(max_digits=4, decimal_places=0)),
                 ('plan', models.BooleanField(default=True)),
                 ('actual', models.BooleanField(default=True)),
