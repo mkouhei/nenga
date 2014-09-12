@@ -96,4 +96,4 @@ class PlanActual(BaseObject):
         unique_together = ('destination', 'year')
 
     def __unicode__(self):
-        return self.destination
+        return unicode(self.destination)
