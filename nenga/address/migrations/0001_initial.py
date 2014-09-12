@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+""" 0001_initial migiration module """
 from __future__ import unicode_literals
 
 from django.db import models, migrations
@@ -6,6 +7,7 @@ import shortuuidfield.fields
 
 
 class Migration(migrations.Migration):
+    """ Migration class in 0001_initial """
 
     dependencies = [
     ]
