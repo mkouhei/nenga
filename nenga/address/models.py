@@ -2,6 +2,7 @@
 """ models of nenga.address """
 from django.db import models
 from shortuuidfield import ShortUUIDField
+import jsonfield
 
 
 class BaseObject(models.Model):
@@ -65,7 +66,7 @@ class Contact(BaseObject):
         ('47', '沖縄県')]
     last_name = models.CharField(max_length=255, unique=False)
     first_name = models.CharField(max_length=255, unique=False)
-    postal_code = models.DecimalField(max_digits=7, decimal_places=0)
+    zip_code = models.CharField(max_length=7, blank=False)
     prefecture = models.CharField(max_length=2, choices=PREFECTURE_CHOICES)
     city = models.CharField(max_length=256, unique=True)
     address = models.CharField(max_length=255, unique=False)
@@ -77,16 +78,28 @@ class Contact(BaseObject):
     class Meta(object):
         """ meta class of Contact """
         db_table = 'contact'
-        unique_together = ('last_name', 'first_name', 'address', 'postal_code')
+        unique_together = ('last_name', 'first_name', 'address', 'zip_code')
 
     def __unicode__(self):
         return "%s %s" % (self.last_name, self.first_name)
 
 
+class Year(BaseObject):
+    """ Year """
+    year = models.DecimalField(max_digits=4, decimal_places=0)
+
+    class Meta(object):
+        """ meta class of Year """
+        db_table = 'year'
+
+    def __unicode__(self):
+        return unicode(self.year)
+
+
 class PlanActual(BaseObject):
     """ plan and actual """
     destination = models.ForeignKey(Contact)
-    year = models.DecimalField(max_digits=4, decimal_places=0)
+    year = models.ForeignKey(Year)
     plan = models.BooleanField(default=True)
     actual = models.BooleanField(default=True)
 
@@ -97,3 +110,18 @@ class PlanActual(BaseObject):
 
     def __unicode__(self):
         return unicode(self.destination)
+
+
+class BackLayout(BaseObject):
+    """ Back layout AKA "Ura-men" """
+    year = models.ForeignKey(Year)
+    layout_template = models.TextField()
+    template_attributes = jsonfield.JSONField()
+
+    class Meta(object):
+        """ meta class of BackLayout """
+        db_table = 'back_layout'
+        unique_together = ('year',)
+
+    def __unicode__(self):
+        return unicode(self.year)
