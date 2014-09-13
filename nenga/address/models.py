@@ -79,6 +79,9 @@ class Contact(BaseObject):
         """ meta class of Contact """
         db_table = 'contact'
         unique_together = ('last_name', 'first_name', 'address', 'zip_code')
+        permissions = (
+            'view_contact', 'View contact'
+            )
 
     def __unicode__(self):
         return "%s %s" % (self.last_name, self.first_name)
@@ -107,6 +110,9 @@ class PlanActual(BaseObject):
         """ meta class of PlanActual """
         db_table = 'plan_actual'
         unique_together = ('destination', 'year')
+        permissions = (
+            'view_plan_actual', 'View PlanActual'
+            )
 
     def __unicode__(self):
         return unicode(self.destination)
@@ -122,6 +128,9 @@ class BackLayout(BaseObject):
         """ meta class of BackLayout """
         db_table = 'back_layout'
         unique_together = ('year',)
+        permissions = (
+            'view_back_layout', 'View BackLayout'
+            )
 
     def __unicode__(self):
         return unicode(self.year)
