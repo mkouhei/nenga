@@ -104,7 +104,7 @@ class PlanActual(BaseObject):
     destination = models.ForeignKey(Contact)
     year = models.ForeignKey(Year)
     plan = models.BooleanField(default=True)
-    actual = models.BooleanField(default=True)
+    actual = models.NullBooleanField(default=None)
 
     class Meta(object):
         """ meta class of PlanActual """

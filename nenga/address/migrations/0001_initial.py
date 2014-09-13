@@ -50,7 +50,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', shortuuidfield.fields.ShortUUIDField(primary_key=True, serialize=False, editable=False, max_length=22, blank=True, verbose_name=b'UUID')),
                 ('plan', models.BooleanField(default=True)),
-                ('actual', models.BooleanField(default=True)),
+                ('actual', models.NullBooleanField(default=None)),
                 ('destination', models.ForeignKey(to='address.Contact')),
             ],
             options={
