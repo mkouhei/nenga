@@ -7,4 +7,8 @@ python setup.py check -r || exit 1
 
 pychecker -X -s nenga/*.py
 pychecker -X -s nenga_tests/*.py
-pylint nenga
+find ./nenga -name "*.py" | grep -v migrations | xargs pylint \
+    -d invalid-name \
+    -d too-few-public-methods \
+    -d too-many-public-methods \
+    -d line-too-long
