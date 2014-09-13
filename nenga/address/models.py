@@ -80,7 +80,7 @@ class Contact(BaseObject):
         db_table = 'contact'
         unique_together = ('last_name', 'first_name', 'address', 'zip_code')
         permissions = (
-            'view_contact', 'View contact'
+            ('view_contact', 'View contact'),
             )
 
     def __unicode__(self):
@@ -111,7 +111,7 @@ class PlanActual(BaseObject):
         db_table = 'plan_actual'
         unique_together = ('destination', 'year')
         permissions = (
-            'view_plan_actual', 'View PlanActual'
+            ('view_plan_actual', 'View PlanActual'),
             )
 
     def __unicode__(self):
@@ -129,7 +129,7 @@ class BackLayout(BaseObject):
         db_table = 'back_layout'
         unique_together = ('year',)
         permissions = (
-            'view_back_layout', 'View BackLayout'
+            ('view_back_layout', 'View BackLayout'),
             )
 
     def __unicode__(self):

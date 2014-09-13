@@ -22,6 +22,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'back_layout',
+                'permissions': (('view_back_layout', 'View BackLayout'),),
             },
             bases=(models.Model,),
         ),
@@ -40,6 +41,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'contact',
+                'permissions': (('view_contact', 'View contact'),),
             },
             bases=(models.Model,),
         ),
@@ -53,6 +55,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'plan_actual',
+                'permissions': (('view_plan_actual', 'View PlanActual'),),
             },
             bases=(models.Model,),
         ),
