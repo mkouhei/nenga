@@ -5,11 +5,14 @@ from django.db import models, migrations
 import __builtin__
 import jsonfield.fields
 import shortuuidfield.fields
+import django.db.models.deletion
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
@@ -19,6 +22,7 @@ class Migration(migrations.Migration):
                 ('id', shortuuidfield.fields.ShortUUIDField(primary_key=True, serialize=False, editable=False, max_length=22, blank=True, verbose_name=b'UUID')),
                 ('layout_template', models.TextField()),
                 ('template_attributes', jsonfield.fields.JSONField(default=__builtin__.dict)),
+                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL, null=True)),
             ],
             options={
                 'db_table': 'back_layout',
@@ -38,6 +42,7 @@ class Migration(migrations.Migration):
                 ('address', models.CharField(max_length=255)),
                 ('address2', models.CharField(default=b'', max_length=255, blank=True)),
                 ('patner_name', models.CharField(default=b'', max_length=255, blank=True)),
+                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL, null=True)),
             ],
             options={
                 'db_table': 'contact',
@@ -52,6 +57,7 @@ class Migration(migrations.Migration):
                 ('plan', models.BooleanField(default=True)),
                 ('actual', models.NullBooleanField(default=None)),
                 ('destination', models.ForeignKey(to='address.Contact')),
+                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL, null=True)),
             ],
             options={
                 'db_table': 'plan_actual',

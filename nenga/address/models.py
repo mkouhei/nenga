@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """ models of nenga.address """
 from django.db import models
+from django.contrib.auth.models import User
 from shortuuidfield import ShortUUIDField
 import jsonfield
 
@@ -14,7 +15,17 @@ class BaseObject(models.Model):
         abstract = True
 
 
-class Contact(BaseObject):
+class PrivateObject(BaseObject):
+    """ Abstract private model that extend with owner to BaseObject. """
+    owner = models.ForeignKey(User, blank=False, null=True,
+                              on_delete=models.SET_NULL)
+
+    class Meta(object):
+        """ meta class of PrivateObject """
+        abstract = True
+
+
+class Contact(PrivateObject):
     """ Contact model """
     PREFECTURE_CHOICES = [
         ('01', '北海道'),
@@ -99,7 +110,7 @@ class Year(BaseObject):
         return unicode(self.year)
 
 
-class PlanActual(BaseObject):
+class PlanActual(PrivateObject):
     """ plan and actual """
     destination = models.ForeignKey(Contact)
     year = models.ForeignKey(Year)
@@ -118,7 +129,7 @@ class PlanActual(BaseObject):
         return unicode(self.destination)
 
 
-class BackLayout(BaseObject):
+class BackLayout(PrivateObject):
     """ Back layout AKA "Ura-men" """
     year = models.ForeignKey(Year)
     layout_template = models.TextField()

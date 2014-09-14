@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+  <table class="table table=condensed">
+  {% for contact in contacts %}
+  <tr class="">
+    <td>{{ contact }}</td>
+  </tr>
+  {% endfor %}
+  </table>
+  <hr/>
+  <ul class="pager"></ul>
+</div>
+{% endblock %}
+
