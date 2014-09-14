@@ -7,6 +7,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
                        (r'^$', RedirectView.as_view(url='/nenga/')),
+                       (r'^login/$', 'django.contrib.auth.views.login',
+                        {'template_name': 'address/login.html'}),
                        (r'^logout/$', 'django.contrib.auth.views.logout',
                         {'template_name': 'address/logout.html'}),
                        (r'^nenga/', include('nenga.address.urls')),
