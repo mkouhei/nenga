@@ -2,11 +2,22 @@
 {% block content %}
 <div class="row">
   <table class="table table=condensed">
-  {% for contact in contacts %}
-  <tr class="">
-    <td>{{ contact }}</td>
-  </tr>
-  {% endfor %}
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Zip code</td>
+        <td>Address</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for contact in contacts %}
+      <tr class="">
+        <td>{{ contact.last_name }} {{ contact.first_name }}</td>
+        <td>{{ contact.zip_code }}</td>
+        <td>{{ contact.get_prefecture_display }} {{ contact.city }} {{ contact.address }} {{ contact.address2 }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
   </table>
   <hr/>
   <ul class="pager"></ul>
