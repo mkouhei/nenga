@@ -16,4 +16,5 @@ class CustomQuerySetManager(models.Manager):
             return getattr(self.get_query_set(), attr, *args)
 
     def get_queryset(self):
+        """ override get_queryset """
         return self.model.QuerySet(self.model)

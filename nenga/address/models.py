@@ -101,7 +101,9 @@ class Contact(PrivateObject):
         return "%s %s" % (self.last_name, self.first_name)
 
     class QuerySet(QuerySet):
+        """ Override QuerySet """
         def owned_list(self, user):
+            """ return owned contact list """
             return self.filter(owner=user)
 
 
