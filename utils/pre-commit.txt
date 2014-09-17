@@ -1,14 +1,11 @@
 #!/bin/sh
 
-cd $(git rev-parse --show-toplevel)
+root=$(git rev-parse --show-toplevel)
+cd $root
 find ./ -name '*.pyc' -delete
 python setup.py test || exit 1
 python setup.py check -r || exit 1
 
 pychecker -X -s nenga/*.py
 pychecker -X -s nenga_tests/*.py
-find ./nenga -name "*.py" | grep -v migrations | xargs pylint \
-    -d invalid-name \
-    -d too-few-public-methods \
-    -d too-many-public-methods \
-    -d line-too-long
+find ./nenga -name "*.py" | grep -v migrations | xargs pylint --rcfile=${root}/.pylintrc
