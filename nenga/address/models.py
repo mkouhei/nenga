@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 """ models of nenga.address """
 from django.db import models
+from django.db.models.query import QuerySet
 from django.contrib.auth.models import User
 from shortuuidfield import ShortUUIDField
 import jsonfield
+from nenga.queryset.models import CustomQuerySetManager
 
 
 class BaseObject(models.Model):
@@ -85,6 +87,7 @@ class Contact(PrivateObject):
                                 blank=True, default="")
     patner_name = models.CharField(max_length=255, unique=False,
                                    blank=True, default="")
+    objects = CustomQuerySetManager()
 
     class Meta(object):
         """ meta class of Contact """
@@ -96,6 +99,10 @@ class Contact(PrivateObject):
 
     def __unicode__(self):
         return "%s %s" % (self.last_name, self.first_name)
+
+    class QuerySet(QuerySet):
+        def owned_list(self, user):
+            return self.filter(owner=user)
 
 
 class Year(BaseObject):

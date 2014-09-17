@@ -15,7 +15,8 @@ def index(request):
 
 def contacts(request):
     """ list view of contacts """
-    contacts = Contact.objects.filter(owner=request.user)
+    contacts = Contact.objects.owned_list(request.user)
+
     return render_to_response('address/contact_list.html',
                               {'is_authenticated':
                                request.user.is_authenticated(),
