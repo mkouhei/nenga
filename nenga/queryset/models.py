@@ -13,7 +13,7 @@ class CustomQuerySetManager(models.Manager):
         try:
             return getattr(self.__class__, attr, *args)
         except AttributeError:
-            return getattr(self.get_query_set(), attr, *args)
+            return getattr(self.get_queryset(), attr, *args)
 
     def get_queryset(self):
         """ override get_queryset """
