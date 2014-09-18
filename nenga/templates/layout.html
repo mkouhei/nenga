@@ -15,8 +15,8 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav nav-pills" id="nav">
             {% if is_authenticated %}
-            <li><a id="contacts" href="contacts"><span class="glyphicon glyphicon-list"></span> contacts</a></li>
-            <li><a id="plan_actual" data-toggle="pill"><span class="glyphicon glyphicon-calendar"></span> plan &amp; actual</a></li>
+            <li><a id="contacts" href="/nenga/contacts"><span class="glyphicon glyphicon-list"></span> contacts</a></li>
+            <li><a id="plan_actual" href="/nenga/{{ year.year__max }}/"><span class="glyphicon glyphicon-calendar"></span> plan &amp; actual</a></li>
             <li><a id="template_layout" data-toggle="pill"><span class="glyphicon glyphicon-pencil"></span> template layout</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{ user.username }}&nbsp;<span class="caret"></span></a>

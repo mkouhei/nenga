@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """ models of nenga.address """
 from django.db import models
+from django.db.models import Max
 from django.db.models.query import QuerySet
 from django.contrib.auth.models import User
 from shortuuidfield import ShortUUIDField
@@ -25,6 +26,16 @@ class PrivateObject(BaseObject):
     class Meta(object):
         """ meta class of PrivateObject """
         abstract = True
+
+    class QuerySet(QuerySet):
+        """ Override QuerySet """
+        def owned_list(self, user):
+            """ return owned list """
+            return self.filter(owner=user)
+
+        def owned_list_by_year(self, user, year):
+            """ return owned list by year """
+            return self.filter(owner=user).filter(year__year=year)
 
 
 class Contact(PrivateObject):
@@ -100,16 +111,11 @@ class Contact(PrivateObject):
     def __unicode__(self):
         return "%s %s" % (self.last_name, self.first_name)
 
-    class QuerySet(QuerySet):
-        """ Override QuerySet """
-        def owned_list(self, user):
-            """ return owned contact list """
-            return self.filter(owner=user)
 
-
-class Year(BaseObject):
+class Year(models.Model):
     """ Year """
-    year = models.DecimalField(max_digits=4, decimal_places=0)
+    year = models.DecimalField(max_digits=4, decimal_places=0, unique=True)
+    objects = CustomQuerySetManager()
 
     class Meta(object):
         """ meta class of Year """
@@ -118,6 +124,12 @@ class Year(BaseObject):
     def __unicode__(self):
         return unicode(self.year)
 
+    class QuerySet(QuerySet):
+        """ Override QuerySet """
+        def latest_year(self):
+            """ return latest record """
+            return self.aggregate(Max('year'))
+
 
 class PlanActual(PrivateObject):
     """ plan and actual """
@@ -125,6 +137,7 @@ class PlanActual(PrivateObject):
     year = models.ForeignKey(Year)
     plan = models.BooleanField(default=True)
     actual = models.NullBooleanField(default=None)
+    objects = CustomQuerySetManager()
 
     class Meta(object):
         """ meta class of PlanActual """

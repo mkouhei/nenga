@@ -68,8 +68,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Year',
             fields=[
-                ('id', shortuuidfield.fields.ShortUUIDField(primary_key=True, serialize=False, editable=False, max_length=22, blank=True, verbose_name=b'UUID')),
-                ('year', models.DecimalField(max_digits=4, decimal_places=0)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('year', models.DecimalField(unique=True, max_digits=4, decimal_places=0)),
             ],
             options={
                 'db_table': 'year',

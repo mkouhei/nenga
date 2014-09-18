@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+  <table class="table table=condensed">
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Year</td>
+        <td>Plan</td>
+        <td>Actual</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for list in plan_actuals %}
+      <tr class="">
+        <td>{{ list.destination }}</td>
+        <td>{{ list.year }}</td>
+        <td>{{ list.plan }}</td>
+        <td>{{ list.actual }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <hr/>
+  <ul class="pager"></ul>
+</div>
+{% endblock %}
+
