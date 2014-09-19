@@ -2,17 +2,14 @@
 """ views of nenga.address """
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from nenga.address.models import Contact, PlanActual, Year
-
-LATEST_YEAR = Year.objects.latest_year()
+from nenga.address.models import Contact, PlanActual
 
 
 def index(request):
     """ index """
     return render_to_response('address/index.html',
                               {'is_authenticated':
-                               request.user.is_authenticated(),
-                               'year': LATEST_YEAR},
+                               request.user.is_authenticated()},
                               context_instance=RequestContext(request))
 
 
@@ -23,18 +20,19 @@ def contacts(request):
     return render_to_response('address/contact_list.html',
                               {'is_authenticated':
                                request.user.is_authenticated(),
-                               'year': LATEST_YEAR,
                                'contacts': contacts},
                               context_instance=RequestContext(request))
 
 
-def plan_actual(request, year):
+def plan_actual(request, year=None):
     """ list view of plan and actual """
-    plan_actuals = PlanActual.objects.owned_list_by_year(request.user,
-                                                         year)
+    if year:
+        plan_actuals = PlanActual.objects.owned_list_by_year(request.user,
+                                                             year)
+    else:
+        plan_actuals = PlanActual.objects.owned_list(request.user)
     return render_to_response('address/plan_actual_list.html',
                               {'is_authenticated':
                                request.user.is_authenticated(),
-                               'year': LATEST_YEAR,
                                'plan_actuals': plan_actuals},
                               context_instance=RequestContext(request))
