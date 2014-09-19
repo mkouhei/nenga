@@ -13,6 +13,14 @@ def index(request):
                               context_instance=RequestContext(request))
 
 
+def profile(request):
+    """ profile """
+    return render_to_response('address/profile_detail.html',
+                              {'is_authenticated':
+                               request.user.is_authenticated()},
+                              context_instance=RequestContext(request))
+
+
 def contacts(request):
     """ list view of contacts """
     contacts = Contact.objects.owned_list(request.user)
