@@ -1,6 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="row">
+  <div class="col-md-2">
+    <select id="year" class="form-control">
+      <option value="">select year</option>
+      {% for year in years %}
+      {% if year %}<option value="{{ year }}">{{ year }}</option>{% endif %}
+      {% endfor %}
+    </select>
+  </div>
   <table class="table table=condensed">
     <thead>
       <tr>
