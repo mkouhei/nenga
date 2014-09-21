@@ -7,6 +7,7 @@
         <td>Name</td>
         <td>Zip code</td>
         <td>Address</td>
+        <td></td>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +16,7 @@
         <td>{{ contact.last_name }} {{ contact.first_name }}</td>
         <td>{{ contact.zip_code }}</td>
         <td>{{ contact.get_prefecture_display }} {{ contact.city }} {{ contact.address }} {{ contact.address2 }}</td>
+        <td><a href="/nenga/contacts/{{ contact.id }}/" class="btn btn-primary">Edit</a></td>
       </tr>
       {% endfor %}
     </tbody>

@@ -3,6 +3,7 @@
 from django.db import models
 from django.db.models import Max
 from django.db.models.query import QuerySet
+from django.forms import ModelForm, HiddenInput
 from django.contrib.auth.models import User
 from shortuuidfield import ShortUUIDField
 import jsonfield

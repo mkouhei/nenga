@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 """ views of nenga.address """
 from django.shortcuts import render_to_response
+from django.forms.models import modelformset_factory
 from django.template import RequestContext
+from django.contrib.auth.models import User
 from nenga.address.models import Contact, PlanActual, Year
+from nenga.address.forms import ContactForm
 
 
 def index(request):
@@ -29,6 +32,30 @@ def contacts(request):
                               {'is_authenticated':
                                request.user.is_authenticated(),
                                'contacts': contacts},
+                              context_instance=RequestContext(request))
+
+
+def contact_edit(request, pk):
+    """ list view of contacts """
+    ContactFormSet = modelformset_factory(
+        model=Contact,
+        form=ContactForm)
+    if request.method == 'POST':
+        formset = ContactFormSet(request.POST)
+        if formset.is_valid():
+            formset.save()
+    else:
+        formset = modelformset_factory(
+            model=Contact,
+            form=ContactForm,
+            max_num=1,
+            extra=1,
+            )(queryset=Contact.objects.filter(id=pk))
+
+    return render_to_response('address/contact_edit.html',
+                              {'is_authenticated':
+                               request.user.is_authenticated(),
+                               'formset': formset},
                               context_instance=RequestContext(request))
 
 

@@ -6,5 +6,8 @@ $(function() {
         });
     }
 
+    $("input").addClass("form-control");
+    $("select").addClass("form-control");
+
     select_year();
 });
