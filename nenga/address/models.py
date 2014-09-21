@@ -93,7 +93,7 @@ class Contact(PrivateObject):
     first_name = models.CharField(max_length=255, unique=False)
     zip_code = models.CharField(max_length=7, blank=False)
     prefecture = models.CharField(max_length=2, choices=PREFECTURE_CHOICES)
-    city = models.CharField(max_length=256, unique=True)
+    city = models.CharField(max_length=255, unique=True)
     address = models.CharField(max_length=255, unique=False)
     address2 = models.CharField(max_length=255, unique=False,
                                 blank=True, default="")
