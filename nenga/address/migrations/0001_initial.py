@@ -2,7 +2,11 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import __builtin__
+import sys
+if sys.version_info > (3, 0):
+    import builtins as __builtin__
+else:
+    import __builtin__
 import jsonfield.fields
 import shortuuidfield.fields
 import django.db.models.deletion
