@@ -97,8 +97,8 @@ class Contact(PrivateObject):
     address = models.CharField(max_length=255, unique=False)
     address2 = models.CharField(max_length=255, unique=False,
                                 blank=True, default="")
-    patner_name = models.CharField(max_length=255, unique=False,
-                                   blank=True, default="")
+    partner_name = models.CharField(max_length=255, unique=False,
+                                    blank=True, default="")
     objects = CustomQuerySetManager()
 
     class Meta(object):

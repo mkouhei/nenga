@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
                 ('city', models.CharField(unique=True, max_length=255)),
                 ('address', models.CharField(max_length=255)),
                 ('address2', models.CharField(default=b'', max_length=255, blank=True)),
-                ('patner_name', models.CharField(default=b'', max_length=255, blank=True)),
+                ('partner_name', models.CharField(default=b'', max_length=255, blank=True)),
                 ('owner', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL, null=True)),
             ],
             options={
