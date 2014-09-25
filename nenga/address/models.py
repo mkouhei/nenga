@@ -104,7 +104,8 @@ class Contact(PrivateObject):
     class Meta(object):
         """ meta class of Contact """
         db_table = 'contact'
-        unique_together = ('last_name', 'first_name', 'address', 'zip_code')
+        unique_together = ('last_name', 'first_name', 'address',
+                           'zip_code', 'owner')
         permissions = (
             ('view_contact', 'View contact'),
             )

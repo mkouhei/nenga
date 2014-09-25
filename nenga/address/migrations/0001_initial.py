@@ -88,11 +88,11 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterUniqueTogether(
             name='planactual',
-            unique_together=set([('destination', 'year')]),
+            unique_together=set([('destination', 'year', 'owner')]),
         ),
         migrations.AlterUniqueTogether(
             name='contact',
-            unique_together=set([('last_name', 'first_name', 'address', 'zip_code')]),
+            unique_together=set([('last_name', 'first_name', 'address', 'zip_code', 'owner')]),
         ),
         migrations.AddField(
             model_name='backlayout',
@@ -102,6 +102,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterUniqueTogether(
             name='backlayout',
-            unique_together=set([('year',)]),
+            unique_together=set([('year', 'owner')]),
         ),
     ]
