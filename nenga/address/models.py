@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """ models of nenga.address """
+import sys
 from django.db import models
 from django.db.models import Max
 from django.db.models.query import QuerySet
@@ -113,6 +114,9 @@ class Contact(PrivateObject):
     def __unicode__(self):
         return "%s %s" % (self.last_name, self.first_name)
 
+    def __str__(self):
+        return "%s %s" % (self.last_name, self.first_name)
+
 
 class Year(models.Model):
     """ Year """
@@ -124,7 +128,10 @@ class Year(models.Model):
         db_table = 'year'
 
     def __unicode__(self):
-        return unicode(self.year)
+        return str(self.year)
+
+    def __str__(self):
+        return str(self.year)
 
     class QuerySet(QuerySet):
         """ Override QuerySet """
@@ -144,13 +151,19 @@ class PlanActual(PrivateObject):
     class Meta(object):
         """ meta class of PlanActual """
         db_table = 'plan_actual'
-        unique_together = ('destination', 'year')
+        unique_together = ('destination', 'year', 'owner')
         permissions = (
             ('view_plan_actual', 'View PlanActual'),
             )
 
     def __unicode__(self):
-        return unicode(self.destination)
+        if sys.version_info < (3, 0):
+            return unicode(self.destination)
+        else:
+            return str(self.destination)
+
+    def __str__(self):
+        return str(self.destination)
 
 
 class BackLayout(PrivateObject):
@@ -162,10 +175,19 @@ class BackLayout(PrivateObject):
     class Meta(object):
         """ meta class of BackLayout """
         db_table = 'back_layout'
-        unique_together = ('year',)
+        unique_together = ('year', 'owner')
         permissions = (
             ('view_back_layout', 'View BackLayout'),
             )
 
     def __unicode__(self):
-        return unicode(self.year)
+        if sys.version_info < (3, 0):
+            return unicode(self.year)
+        else:
+            return str(self.year)
+
+    def __str__(self):
+        if sys.version_info < (3, 0):
+            return unicode(self.year)
+        else:
+            return str(self.year)
