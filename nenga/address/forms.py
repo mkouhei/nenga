@@ -9,4 +9,14 @@ class ContactForm(ModelForm):
     class Meta(object):
         """ meta class of ContactForm """
         model = Contact
+        fields = ('last_name',
+                  'first_name',
+                  'zip_code',
+                  'prefecture',
+                  'city',
+                  'address',
+                  'address2',
+                  'partner_name',
+                  'owner')
+
         widgets = {'owner': HiddenInput()}
