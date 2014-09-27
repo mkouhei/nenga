@@ -1,4 +1,5 @@
 Django
+django_model_utils
 genenga
 django-jsonfield
 https://github.com/mkouhei/django-shortuuidfield/tarball/Fixed_unicode_handling

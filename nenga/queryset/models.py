@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
 """ Custom QuerySet models """
-from django.db import models
+from django.db.models.query import QuerySet
 
 
-class CustomQuerySetManager(models.Manager):
-    """ A re-usable Manager to access a custom QuerySet.
-    This snippet's origin is stackoverflow.
-    http://stackoverflow.com/questions/2163151/\
-    custom-queryset-and-manager-without-breaking-dry
-    """
-    def __getattr__(self, attr, *args):
-        try:
-            return getattr(self.__class__, attr, *args)
-        except AttributeError:
-            return getattr(self.get_queryset(), attr, *args)
+class PrivateQuerySet(QuerySet):
+    """ Override QuerySet """
+    def owned_list(self, user):
+        """ return owned list """
+        return self.filter(owner=user)
 
-    def get_queryset(self):
-        """ override get_queryset """
-        return self.model.QuerySet(self.model)
+    def owned_list_by_year(self, user, year):
+        """ return owned list by year """
+        return self.filter(owner=user).filter(year__year=year)
+
+
+class YearQuerySet(QuerySet):
+    """ Override QuerySet """
+    def latest_year(self):
+        """ return latest record """
+        return self.aggregate(Max('year'))

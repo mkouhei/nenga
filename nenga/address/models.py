@@ -3,12 +3,12 @@
 import sys
 from django.db import models
 from django.db.models import Max
-from django.db.models.query import QuerySet
 from django.forms import ModelForm, HiddenInput
 from django.contrib.auth.models import User
 from shortuuidfield import ShortUUIDField
 import jsonfield
-from nenga.queryset.models import CustomQuerySetManager
+from nenga.queryset.models import PrivateQuerySet, YearQuerySet
+from model_utils.managers import PassThroughManager
 
 
 class BaseObject(models.Model):
@@ -28,16 +28,6 @@ class PrivateObject(BaseObject):
     class Meta(object):
         """ meta class of PrivateObject """
         abstract = True
-
-    class QuerySet(QuerySet):
-        """ Override QuerySet """
-        def owned_list(self, user):
-            """ return owned list """
-            return self.filter(owner=user)
-
-        def owned_list_by_year(self, user, year):
-            """ return owned list by year """
-            return self.filter(owner=user).filter(year__year=year)
 
 
 class Contact(PrivateObject):
@@ -100,7 +90,7 @@ class Contact(PrivateObject):
                                 blank=True, default="")
     partner_name = models.CharField(max_length=255, unique=False,
                                     blank=True, default="")
-    objects = CustomQuerySetManager()
+    objects = PassThroughManager.for_queryset_class(PrivateQuerySet)()
 
     class Meta(object):
         """ meta class of Contact """
@@ -121,7 +111,7 @@ class Contact(PrivateObject):
 class Year(models.Model):
     """ Year """
     year = models.DecimalField(max_digits=4, decimal_places=0, unique=True)
-    objects = CustomQuerySetManager()
+    objects = PassThroughManager.for_queryset_class(YearQuerySet)()
 
     class Meta(object):
         """ meta class of Year """
@@ -133,12 +123,6 @@ class Year(models.Model):
     def __str__(self):
         return str(self.year)
 
-    class QuerySet(QuerySet):
-        """ Override QuerySet """
-        def latest_year(self):
-            """ return latest record """
-            return self.aggregate(Max('year'))
-
 
 class PlanActual(PrivateObject):
     """ plan and actual """
@@ -146,7 +130,7 @@ class PlanActual(PrivateObject):
     year = models.ForeignKey(Year)
     plan = models.BooleanField(default=True)
     actual = models.NullBooleanField(default=None)
-    objects = CustomQuerySetManager()
+    objects = PassThroughManager.for_queryset_class(PrivateQuerySet)()
 
     class Meta(object):
         """ meta class of PlanActual """

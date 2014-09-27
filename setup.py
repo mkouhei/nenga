@@ -55,6 +55,7 @@ long_description = (
 
 requires = ['setuptools',
             'Django',
+            'django_model_utils',
             'django_shortuuidfield',
             'django-jsonfield',
             'genenga']
