@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+  <form method="post">
+    {% csrf_token %}
+    <fieldset>
+    {{ formset.management_form }}
+    {% for form in formset %}
+    {% for field in form %}
+      <div class="form-group">
+        {% if field.label != "Id" %}
+        {{ field.label_tag }}
+        {% endif %}
+        {{ field }}
+      </div>
+    {% endfor %}
+    {% endfor %}
+    </fieldset>
+    <input type="submit" value="update"/>
+  </form>
+</div>
+{% endblock %}

@@ -16,6 +16,7 @@
         <td>Year</td>
         <td>Plan</td>
         <td>Actual</td>
+        <td></td>
       </tr>
     </thead>
     <tbody>
@@ -25,6 +26,7 @@
         <td>{{ list.year }}</td>
         <td>{{ list.plan }}</td>
         <td>{{ list.actual }}</td>
+        <td><a href="/nenga/plan_actual/{{ list.id }}/" class="btn btn-primary">Edit</a></td>
       </tr>
       {% endfor %}
     </tbody>

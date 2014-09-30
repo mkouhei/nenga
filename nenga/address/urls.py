@@ -12,4 +12,7 @@ urlpatterns = patterns('nenga.address.views',
                        url(r'^plan_actual/$', 'plan_actual',
                            name='plan_actual'),
                        url(r'^plan_actual/(?P<year>\d{4})/$', 'plan_actual',
-                           name='plan_actuals'),)
+                           name='plan_actuals'),
+                       url(r'^plan_actual/(?P<pk>\w+)/$',
+                           'plan_actual_edit',
+                           name='plan_actual_edit'),)

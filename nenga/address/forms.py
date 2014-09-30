@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """ forms of nenga.address """
 from django.forms import ModelForm, HiddenInput
-from nenga.address.models import Contact
+from nenga.address.models import Contact, PlanActual
 
 
 class ContactForm(ModelForm):
@@ -17,6 +17,19 @@ class ContactForm(ModelForm):
                   'address',
                   'address2',
                   'partner_name',
+                  'owner')
+
+        widgets = {'owner': HiddenInput()}
+
+
+class PlanActualForm(ModelForm):
+    """ ModelForm of PlanActual """
+    class Meta(object):
+        model = PlanActual
+        fields = ('destination',
+                  'year',
+                  'plan',
+                  'actual',
                   'owner')
 
         widgets = {'owner': HiddenInput()}

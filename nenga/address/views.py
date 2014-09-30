@@ -5,7 +5,7 @@ from django.forms.models import modelformset_factory
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from nenga.address.models import Contact, PlanActual, Year
-from nenga.address.forms import ContactForm
+from nenga.address.forms import ContactForm, PlanActualForm
 
 
 def index(request):
@@ -36,7 +36,7 @@ def contacts(request):
 
 
 def contact_edit(request, pk):
-    """ list view of contacts """
+    """ edit view of contact """
     ContactFormSet = modelformset_factory(
         model=Contact,
         form=ContactForm)
@@ -72,4 +72,28 @@ def plan_actual(request, year=None):
                                request.user.is_authenticated(),
                                'years': years,
                                'plan_actuals': plan_actuals},
+                              context_instance=RequestContext(request))
+
+
+def plan_actual_edit(request, pk):
+    """ edit view of plan_actual """
+    PlanActualFormSet = modelformset_factory(
+        model=PlanActual,
+        form=PlanActualForm)
+    if request.method == 'POST':
+        formset = PlanActualFormSet(request.POST)
+        if formset.is_valid():
+            formset.save()
+    else:
+        formset = modelformset_factory(
+            model=PlanActual,
+            form=PlanActualForm,
+            max_num=1,
+            extra=1,
+        )(queryset=PlanActual.objects.filter(id=pk))
+
+    return render_to_response('address/plan_actual_edit.html',
+                              {'is_authenticated':
+                               request.user.is_authenticated(),
+                               'formset': formset},
                               context_instance=RequestContext(request))
