@@ -25,6 +25,7 @@ class ContactForm(ModelForm):
 class PlanActualForm(ModelForm):
     """ ModelForm of PlanActual """
     class Meta(object):
+        """ meta class of PlanActualForm """
         model = PlanActual
         fields = ('destination',
                   'year',
