@@ -6,7 +6,7 @@ from django.conf.urls import patterns, url
 urlpatterns = patterns('nenga.address.views',
                        url(r'^$', 'index', name='index'),
                        url(r'^profile/$', 'profile', name='profile'),
-                       url(r'^contacts$', 'contacts', name='contacts'),
+                       url(r'^contacts/$', 'contacts', name='contacts'),
                        url(r'^contacts/(?P<pk>\w+)/$', 'contact_edit',
                            name='contact_edit'),
                        url(r'^plan_actual/$', 'plan_actual',
