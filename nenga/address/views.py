@@ -2,6 +2,7 @@
 """ views of nenga.address """
 from django.shortcuts import render_to_response
 from django.forms.models import modelformset_factory
+from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from nenga.address.models import Contact, PlanActual, Year
@@ -44,6 +45,7 @@ def contact_edit(request, pk):
         formset = ContactFormSet(request.POST)
         if formset.is_valid():
             formset.save()
+            return HttpResponseRedirect('/nenga/contacts')
     else:
         formset = modelformset_factory(
             model=Contact,
@@ -84,6 +86,7 @@ def plan_actual_edit(request, pk):
         formset = PlanActualFormSet(request.POST)
         if formset.is_valid():
             formset.save()
+            return HttpResponseRedirect('/nenga/plan_actual/')
     else:
         formset = modelformset_factory(
             model=PlanActual,
