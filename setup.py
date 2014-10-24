@@ -16,7 +16,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import os
 import sys
 from setuptools import setup
 from setuptools.command.test import test as TestCommand

@@ -2,7 +2,6 @@
 import os
 import json
 import shortuuid
-from datetime import datetime
 
 
 def generate_data(key):

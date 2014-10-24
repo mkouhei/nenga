@@ -4,7 +4,6 @@ from django.shortcuts import render_to_response
 from django.forms.models import modelformset_factory
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
-from django.contrib.auth.models import User
 from nenga.address.models import Contact, PlanActual, Year
 from nenga.address.forms import ContactForm, PlanActualForm
 

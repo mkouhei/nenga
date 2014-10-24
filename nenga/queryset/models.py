@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """ Custom QuerySet models """
+from django.db.models import Max
 from django.db.models.query import QuerySet
 
 
