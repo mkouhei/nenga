@@ -3,3 +3,4 @@ db.sqlite3
 dummy_*.json
 htmlcov/
 .cache/
+build/
