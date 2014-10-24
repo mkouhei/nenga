@@ -9,4 +9,11 @@ disable=
         unused-import,
         redefined-outer-name,
         undefined-variable,
-        no-member
+        no-member,
+        wildcard-import,
+        no-name-in-module,
+        unused-wildcard-import,
+        duplicate-code,
+        import-error,
+        anomalous-unicode-escape-in-string,
+        bad-open-mode
