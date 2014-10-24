@@ -37,8 +37,9 @@ class ContactTransactionTest(TransactionTestCase):
 
 
 class ContactTest(TestCase):
-    fixtures = ['nenga_tests/test_data/dummy_users.json',
-                'nenga_tests/test_data/dummy_data.json']
+    """ unit test Contact """
+    fixtures = ['nenga/address/tests/dummy_users.json',
+                'nenga/address/tests/dummy_data.json']
 
     def test_get_contacts(self):
         query = Contact.objects.all()
