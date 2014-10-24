@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+""" convert csv to json """
 import csv
 import json
 import os
@@ -10,6 +11,7 @@ from django.contrib.auth.models import User
 
 
 def convert_format(row):
+    """ convert format """
     return {
         "model": "auth.user",
         "pk": int(row[0]),
@@ -27,12 +29,14 @@ def convert_format(row):
 
 
 def convert_hash_password(plaintext_password):
+    """ convert plain text password to hash password """
     u = User()
     u.set_password(plaintext_password)
     return u.password
 
 
 def main():
+    """ main """
     dirpath = os.path.dirname(os.path.abspath(__file__))
     csv_path = os.path.join(dirpath, 'FakeNameGenerator.com_2a6e893c.csv')
     json_path = os.path.join(dirpath, 'dummy_users.json')

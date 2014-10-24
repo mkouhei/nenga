@@ -30,6 +30,7 @@ class ContactTransactionTest(TransactionTestCase):
             owner=self.user1)
 
     def test_get_contacts(self):
+        """ unit test get_contacts """
         query = Contact.objects.get(pk=self.contact0.id)
         self.assertEqual(query.__str__(),
                          '%s %s' % (self.contact0.last_name,
@@ -42,5 +43,6 @@ class ContactTest(TestCase):
                 'nenga/address/tests/dummy_data.json']
 
     def test_get_contacts(self):
-        query = Contact.objects.all()
+        """ unit test get_contacts """
+        Contact.objects.all()
         self.assertTrue(True)
