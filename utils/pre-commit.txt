@@ -7,5 +7,4 @@ python setup.py test || exit 1
 python setup.py check -r || exit 1
 
 pychecker -X -s nenga/*.py
-pychecker -X -s nenga_tests/*.py
 find ./nenga -name "*.py" | grep -v migrations | xargs pylint --rcfile=${root}/.pylintrc

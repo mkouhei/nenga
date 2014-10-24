@@ -8,8 +8,9 @@ from nenga.address.models import Contact
 
 
 class ContactTransactionTest(TransactionTestCase):
-    fixtures = ['nenga_tests/test_data/dummy_users.json',
-                'nenga_tests/test_data/dummy_data.json']
+    """ Unit test of transaction of Contact """
+    fixtures = ['nenga/address/tests/dummy_users.json',
+                'nenga/address/tests/dummy_data.json']
 
     def setUp(self):
         seed = shortuuid.ShortUUID()

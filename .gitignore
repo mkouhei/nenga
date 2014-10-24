@@ -1,3 +1,5 @@
 *.egg/
 db.sqlite3
 dummy_*.json
+htmlcov/
+.cache/
