@@ -4,3 +4,4 @@ dummy_*.json
 htmlcov/
 .cache/
 build/
+requirements.txt
