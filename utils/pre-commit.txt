@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/bin/sh -e
 
-root=$(git rev-parse --show-toplevel)
-cd $root
-find ./ -name '*.pyc' -delete
-python setup.py test || exit 1
-python setup.py check -r || exit 1
-
-pychecker -X -s nenga/*.py
-find ./nenga -name "*.py" | grep -v migrations | xargs pylint --rcfile=${root}/.pylintrc
+rootdir=$(git rev-parse --show-toplevel)
+cd $rootdir
+(
+    rm -rf _build dist *.egg-info
+    find ./ -name '*.pyc' -delete
+    tox
+    python setup.py check -r
+)
