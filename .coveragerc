@@ -1,8 +1,8 @@
 [run]
 include =
     nenga/*
-    nenga/address/migrations/*
 
 omit =
     nenga/core/settings/*
     nenga/address/tests/*
+    nenga/address/migrations/*
