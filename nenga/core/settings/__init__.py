@@ -1,1 +1,1 @@
-""" nenga.core.settings """
+"""nenga.core.settings."""

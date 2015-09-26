@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Django development settings
-"""
+"""Django development settings."""
 from nenga.core.settings.base import *  # noqa
 
 

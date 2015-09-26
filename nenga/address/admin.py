@@ -1,15 +1,19 @@
-""" admin of Nenga as Django App """
+"""admin of Nenga as Django App."""
 from django.contrib import admin
 from nenga.address.models import Contact, Year, PlanActual, BackLayout
 
 
 class PlanActualAdmin(admin.ModelAdmin):
-    """ Customizing list display for PlanActual """
+
+    """Customizing list display for PlanActual."""
+
     list_display = ('destination', 'year', 'plan', 'actual')
 
 
 class BackLayoutAdmin(admin.ModelAdmin):
-    """ Customizing list display for BackLayout """
+
+    """Customizing list display for BackLayout."""
+
     list_display = ('year',)
 
 admin.site.register(Contact)

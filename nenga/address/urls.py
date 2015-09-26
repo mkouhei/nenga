@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-""" routing of nenga.address """
+"""routing of nenga.address."""
 from django.conf.urls import patterns, url
 
 

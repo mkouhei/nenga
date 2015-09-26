@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-""" unit test of nenga.address """
+"""unit test of nenga.address."""
 import shortuuid
 import random
 from django.test import TransactionTestCase, TestCase
@@ -8,11 +8,13 @@ from nenga.address.models import Contact
 
 
 class ContactTransactionTest(TransactionTestCase):
-    """ Unit test of transaction of Contact """
+
+    """Unit test of transaction of Contact."""
     fixtures = ['nenga/address/tests/dummy_users.json',
                 'nenga/address/tests/dummy_data.json']
 
     def setUp(self):
+        """initialize."""
         seed = shortuuid.ShortUUID()
         seed.set_alphabet('0123456789')
         self.user1 = User.objects.get(pk=1)
@@ -30,7 +32,7 @@ class ContactTransactionTest(TransactionTestCase):
             owner=self.user1)
 
     def test_get_contacts(self):
-        """ unit test get_contacts """
+        """unit test get_contacts."""
         query = Contact.objects.get(pk=self.contact0.id)
         self.assertEqual(query.__str__(),
                          '%s %s' % (self.contact0.last_name,
@@ -38,11 +40,10 @@ class ContactTransactionTest(TransactionTestCase):
 
 
 class ContactTest(TestCase):
-    """ unit test Contact """
+    """unit test Contact."""
     fixtures = ['nenga/address/tests/dummy_users.json',
                 'nenga/address/tests/dummy_data.json']
 
     def test_get_contacts(self):
-        """ unit test get_contacts """
-        Contact.objects.all()
-        self.assertTrue(True)
+        """unit test get_contacts."""
+        self.assertEqual(len(Contact.objects.all()), 20)

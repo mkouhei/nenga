@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-""" generate fixtures data """
+"""generate fixtures data."""
 import os
 import json
 import shortuuid
 
 
 def generate_data(key):
-    """ generate data """
+    """generate data."""
     return {
         "model": "nenga.%s" % key,
         "pk": shortuuid.uuid(),
@@ -17,7 +17,7 @@ def generate_data(key):
 
 
 def generate_contact(owner_id):
-    """ generate contact data """
+    """generate contact data."""
     return {
         "model": "address.contact",
         "pk": shortuuid.uuid(),
@@ -36,7 +36,7 @@ def generate_contact(owner_id):
 
 
 def generate_json():
-    """ convert json """
+    """convert json."""
     data_list = []
     for i in range(20):
         data_list.append(generate_contact(i % 4 + 1))
@@ -44,7 +44,7 @@ def generate_json():
 
 
 def main():
-    """ main """
+    """main."""
     dirpath = os.path.dirname(os.path.abspath(__file__))
     json_path = os.path.join(dirpath, 'dummy_data.json')
 

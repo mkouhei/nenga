@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-""" basic routing of Nenga as Django App """
+"""basic routing of Nenga as Django App."""
 from django.conf.urls import patterns, include, url
 from django.views.generic import RedirectView
 from django.contrib import admin

@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Django local test settings.
-"""
+"""Django local test settings."""
 from nenga.core.settings.base import *  # noqa
 
 # SECURITY WARNING: keep the secret key used in production secret!

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-""" manage.py of Nenga as Django App. """
+"""manage.py of Nenga as Django App."""
 import os
 import sys
 import django

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-""" views of nenga.address """
+"""views of nenga.address."""
 from django.shortcuts import render_to_response
 from django.forms.models import modelformset_factory
 from django.http import HttpResponseRedirect
@@ -9,7 +9,7 @@ from nenga.address.forms import ContactForm, PlanActualForm
 
 
 def index(request):
-    """ index """
+    """index view."""
     return render_to_response('address/index.html',
                               {'is_authenticated':
                                request.user.is_authenticated()},
@@ -17,7 +17,7 @@ def index(request):
 
 
 def profile(request):
-    """ profile """
+    """profile view."""
     return render_to_response('address/profile_detail.html',
                               {'is_authenticated':
                                request.user.is_authenticated()},
@@ -25,7 +25,7 @@ def profile(request):
 
 
 def contacts(request):
-    """ list view of contacts """
+    """list view of contacts."""
     contacts = Contact.objects.owned_list(request.user)
 
     return render_to_response('address/contact_list.html',
@@ -36,7 +36,7 @@ def contacts(request):
 
 
 def contact_edit(request, pk):
-    """ edit view of contact """
+    """edit view of contact."""
     ContactFormSet = modelformset_factory(
         model=Contact,
         form=ContactForm)
@@ -61,7 +61,7 @@ def contact_edit(request, pk):
 
 
 def plan_actual(request, year=None):
-    """ list view of plan and actual """
+    """list view of plan and actual."""
     years = Year.objects.all()
     if year:
         plan_actuals = PlanActual.objects.owned_list_by_year(request.user,
@@ -77,7 +77,7 @@ def plan_actual(request, year=None):
 
 
 def plan_actual_edit(request, pk):
-    """ edit view of plan_actual """
+    """edit view of plan_actual."""
     PlanActualFormSet = modelformset_factory(
         model=PlanActual,
         form=PlanActualForm)

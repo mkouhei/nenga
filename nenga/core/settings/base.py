@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Django settings for nenga project.
+"""Django settings for nenga project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/dev/topics/settings/

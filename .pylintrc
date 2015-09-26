@@ -16,4 +16,5 @@ disable=
         duplicate-code,
         import-error,
         anomalous-unicode-escape-in-string,
-        bad-open-mode
+        bad-open-mode,
+        model-has-unicode

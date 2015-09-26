@@ -1,5 +1,4 @@
-"""
-WSGI config for nenga project.
+"""WSGI config for nenga project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
