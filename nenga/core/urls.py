@@ -6,7 +6,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-                       (r'^$', RedirectView.as_view(url='/nenga/')),
+                       (r'^$', RedirectView.as_view(url='/nenga/',
+                                                    permanent=True)),
                        (r'^login/$', 'django.contrib.auth.views.login',
                         {'template_name': 'address/login.html'}),
                        (r'^logout/$', 'django.contrib.auth.views.logout',
