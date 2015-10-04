@@ -10,6 +10,7 @@ from nenga.address.models import Contact
 class ContactTransactionTest(TransactionTestCase):
 
     """Unit test of transaction of Contact."""
+
     fixtures = ['nenga/address/tests/dummy_users.json',
                 'nenga/address/tests/dummy_data.json']
 
@@ -31,7 +32,7 @@ class ContactTransactionTest(TransactionTestCase):
             partner_name=shortuuid.uuid(),
             owner=self.user1)
 
-    def test_get_contacts(self):
+    def test_get_contact(self):
         """unit test get_contacts."""
         query = Contact.objects.get(pk=self.contact0.id)
         self.assertEqual(query.__str__(),
@@ -40,7 +41,9 @@ class ContactTransactionTest(TransactionTestCase):
 
 
 class ContactTest(TestCase):
+
     """unit test Contact."""
+
     fixtures = ['nenga/address/tests/dummy_users.json',
                 'nenga/address/tests/dummy_data.json']
 
