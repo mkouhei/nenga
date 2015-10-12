@@ -4,14 +4,12 @@ from nenga.address.models import Contact, Year, PlanActual, BackLayout
 
 
 class PlanActualAdmin(admin.ModelAdmin):
-
     """Customizing list display for PlanActual."""
 
     list_display = ('destination', 'year', 'plan', 'actual')
 
 
 class BackLayoutAdmin(admin.ModelAdmin):
-
     """Customizing list display for BackLayout."""
 
     list_display = ('year',)

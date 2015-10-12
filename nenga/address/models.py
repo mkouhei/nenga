@@ -10,34 +10,29 @@ from model_utils.managers import PassThroughManager
 
 
 class BaseObject(models.Model):
-
     """Abstract base model that had id attribute formatted as shortuuid."""
 
     id = ShortUUIDField(primary_key=True, auto=True, verbose_name='UUID')
 
     class Meta(object):
-
         """meta class of BaseObject."""
 
         abstract = True
 
 
 class PrivateObject(BaseObject):
-
     """Abstract private model that extend with owner to BaseObject."""
 
     owner = models.ForeignKey(User, blank=False, null=True,
                               on_delete=models.SET_NULL)
 
     class Meta(object):
-
         """meta class of PrivateObject."""
 
         abstract = True
 
 
 class Contact(PrivateObject):
-
     """Contact model."""
 
     PREFECTURE_CHOICES = [
@@ -101,7 +96,6 @@ class Contact(PrivateObject):
     objects = PassThroughManager.for_queryset_class(PrivateQuerySet)()
 
     class Meta(object):
-
         """meta class of Contact."""
 
         db_table = 'contact'
@@ -121,14 +115,12 @@ class Contact(PrivateObject):
 
 
 class Year(models.Model):
-
     """Year."""
 
     year = models.DecimalField(max_digits=4, decimal_places=0, unique=True)
     objects = PassThroughManager.for_queryset_class(YearQuerySet)()
 
     class Meta(object):
-
         """meta class of Year."""
 
         db_table = 'year'
@@ -143,7 +135,6 @@ class Year(models.Model):
 
 
 class PlanActual(PrivateObject):
-
     """plan and actual."""
 
     destination = models.ForeignKey(Contact)
@@ -153,7 +144,6 @@ class PlanActual(PrivateObject):
     objects = PassThroughManager.for_queryset_class(PrivateQuerySet)()
 
     class Meta(object):
-
         """meta class of PlanActual."""
 
         db_table = 'plan_actual'
@@ -175,7 +165,6 @@ class PlanActual(PrivateObject):
 
 
 class BackLayout(PrivateObject):
-
     """Back layout AKA "Ura-men"."""
 
     year = models.ForeignKey(Year)
@@ -183,7 +172,6 @@ class BackLayout(PrivateObject):
     template_attributes = jsonfield.JSONField()
 
     class Meta(object):
-
         """meta class of BackLayout."""
 
         db_table = 'back_layout'

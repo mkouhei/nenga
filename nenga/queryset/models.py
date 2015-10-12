@@ -5,7 +5,6 @@ from django.db.models.query import QuerySet
 
 
 class PrivateQuerySet(QuerySet):
-
     """Override QuerySet."""
 
     def owned_list(self, user):
@@ -18,7 +17,6 @@ class PrivateQuerySet(QuerySet):
 
 
 class YearQuerySet(QuerySet):
-
     """Override QuerySet."""
 
     def latest_year(self):

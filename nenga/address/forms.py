@@ -5,11 +5,9 @@ from nenga.address.models import Contact, PlanActual
 
 
 class ContactForm(ModelForm):
-
     """ModelForm of Contact."""
 
     class Meta(object):
-
         """meta class of ContactForm."""
 
         model = Contact
@@ -27,11 +25,9 @@ class ContactForm(ModelForm):
 
 
 class PlanActualForm(ModelForm):
-
     """ModelForm of PlanActual."""
 
     class Meta(object):
-
         """meta class of PlanActualForm."""
 
         model = PlanActual
